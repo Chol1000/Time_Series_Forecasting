@@ -1,0 +1,8 @@
+{
+  "alpha": 0.4318,
+  "beta": 0.0809,
+  "gamma": 0.0,
+  "seasonal_periods": 144,
+  "phi": 0.863,
+  "train_time_s": 1.3254
+}

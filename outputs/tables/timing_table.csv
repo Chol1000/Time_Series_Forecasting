@@ -1,0 +1,4 @@
+Model,Avg Train (s),Avg Inference (s),Infer / step (ms)
+Holt-Winters,1.43,0.0313,0.031
+LSTM,10.14,2.4698,2.4502
+Transformer,60.92,3.3279,3.3015

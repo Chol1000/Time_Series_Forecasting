@@ -1,0 +1,10 @@
+Area,Square,Model,MAE,RMSE,MAPE (%),sMAPE (%)
+Area 4159,4159,Holt-Winters,16.91,23.14,7.39,7.35
+Area 4556,4556,Holt-Winters,27.74,37.12,6.42,6.42
+Top area,5161,Holt-Winters,81.88,121.65,8.4,8.38
+Area 4159,4159,LSTM,15.09,20.37,6.7,6.63
+Area 4556,4556,LSTM,28.89,38.38,6.67,6.49
+Top area,5161,LSTM,84.19,127.89,8.72,8.6
+Area 4159,4159,Transformer,17.95,22.42,8.87,8.43
+Area 4556,4556,Transformer,26.72,36.03,6.17,6.12
+Top area,5161,Transformer,100.53,133.96,14.88,13.15
