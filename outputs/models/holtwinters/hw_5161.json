@@ -4,5 +4,5 @@
   "gamma": 0.0,
   "seasonal_periods": 144,
   "phi": 0.863,
-  "train_time_s": 1.3254
+  "train_time_s": 1.1963
 }
