@@ -41,9 +41,6 @@ $RECYCLE.BIN/
 # Large raw data (download from Harvard Dataverse)
 data/raw/
 
-# Processed cache — too large for git (468 MB), auto-generated on first run (~2 min)
-data/processed/*.parquet
-
 # IDE
 .vscode/
 .idea/
