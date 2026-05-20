@@ -1,8 +1,7 @@
 # Time Series Forecasting — Milan Mobile Network Traffic
 
-**Course:** ML Techniques I · Formative Assignment  
-**Student:** Chol Monykuch · c.monykuch@alustudent.com  
-**Dataset:** TIM Milan Mobile Network Traffic · Nov 2013 – Jan 2014
+**Dataset:** [TIM Milan Mobile Network Traffic](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EGZHFV) · Nov 2013 – Jan 2014  
+**Grid GeoJSON:** [Milan Grid Squares](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QJWLFU)
 
 ---
 
