@@ -65,6 +65,51 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     }
 
 
+def run_experiment(model_cls, model_kwargs: dict, train_data: np.ndarray,
+                   val_data: np.ndarray, clip_lower: float = 0.0,
+                   label: str = "") -> tuple:
+    """
+    Fit a model and evaluate it on validation data in one call.
+
+    Encapsulates the repetitive fit / predict_rolling / compute_metrics
+    pattern shared across all 12 hyperparameter experiments.  Used directly
+    in compact batch loops; each experiment cell in the notebook also calls
+    these three methods explicitly for output transparency.
+
+    Parameters
+    ----------
+    model_cls       One of HoltWintersModel, LSTMForecaster, TransformerForecaster.
+    model_kwargs    Constructor kwargs passed to model_cls.
+    train_data      1-D training series (float32 or float64 per model requirement).
+    val_data        1-D validation series (same dtype).
+    clip_lower      Floor applied to raw predictions (default 0.0 — CDR counts).
+    label           Short description printed with the metric summary line.
+
+    Returns
+    -------
+    model    Fitted model instance (access .train_time_, .best_epoch_, etc.)
+    preds    np.ndarray, shape (len(val_data),) — one-step-ahead predictions.
+    metrics  dict with keys MAE, RMSE, MAPE, sMAPE.
+
+    Example — batch loop over experiment configs
+    --------------------------------------------
+    configs = [
+        dict(seasonal_periods=144, seasonal='add'),
+        dict(seasonal_periods=288, seasonal='add'),
+    ]
+    results = [run_experiment(HoltWintersModel, cfg, tr, te, label=f'Exp{i+1}')
+               for i, cfg in enumerate(configs)]
+    """
+    model = model_cls(**model_kwargs)
+    model.fit(train_data)
+    preds = np.clip(model.predict_rolling(train_data, val_data), clip_lower, None)
+    metrics = compute_metrics(val_data.astype(np.float64), preds.astype(np.float64))
+    if label:
+        print(f"  {label:30s}  RMSE={metrics['RMSE']:8.2f}  "
+              f"MAE={metrics['MAE']:8.2f}  MAPE={metrics['MAPE']:.2f}%")
+    return model, preds, metrics
+
+
 # ── Select best available accelerator ─────────────────────────────────────────
 
 def _best_device() -> torch.device:
