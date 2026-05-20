@@ -212,11 +212,11 @@ Float32 dtype casting reduces the dataset footprint by **50%** compared to the p
 
 | Grid Square | Best Model | Test RMSE | Test MAPE |
 |-------------|-----------|-----------|-----------|
-| 5161 (busiest) | Holt-Winters | ~156 | ~8.3% |
-| 4159 | LSTM | ~79 | ~6.5% |
-| 4556 | Transformer | ~36 | ~6.0% |
+| 5161 (busiest) | Holt-Winters | 121.65 | 8.40% |
+| 4159 | LSTM | 20.37 | 6.70% |
+| 4556 | Transformer | 36.03 | 6.17% |
 
-All three models outperform the rolling-mean baseline by **65–80% in RMSE** on the test set.
+All three models outperform the seasonal naïve baseline by **78–80% in RMSE** on the test set.
 
 ---
 
