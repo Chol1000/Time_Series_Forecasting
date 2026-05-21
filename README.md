@@ -20,8 +20,8 @@ This project analyses and forecasts internet traffic across the Milan mobile net
 | Model | Architecture |
 |-------|-------------|
 | **Holt-Winters** | Triple exponential smoothing · additive seasonality · period = 144 |
-| **LSTM** | Single-layer recurrent network · hidden size 64 · sequence length 144 |
-| **Transformer** | Encoder-only Pre-LN · 2 heads · 2 layers · d_model 64 |
+| **LSTM** | Single-layer recurrent network · hidden size 32 · sequence length 72 |
+| **Transformer** | Encoder-only Pre-LN · 4 heads · 2 layers · d_model 128 |
 
 ---
 
