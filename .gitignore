@@ -47,12 +47,9 @@ data/raw/
 *.swp
 *.swo
 
-# Generated report — submitted separately as PDF document
+# Report files — submitted separately, not tracked in git
 outputs/report_milan_traffic.pdf
-
-# Dev and report-generation scripts (not part of submission)
-split_notebooks.py
-generate_report.py
+outputs/report_full_text.txt
 
 # Misc
 *.log
