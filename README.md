@@ -210,13 +210,47 @@ Float32 dtype casting reduces the dataset footprint by **50%** compared to the p
 
 ## Results Summary
 
-| Grid Square | Best Model | Test RMSE | Test MAPE |
-|-------------|-----------|-----------|-----------|
-| 5161 (busiest) | Holt-Winters | 121.65 | 8.40% |
-| 4159 | LSTM | 20.37 | 6.70% |
-| 4556 | Transformer | 36.03 | 6.17% |
+Test week: **16–22 December 2013** (1,008 steps, rolling one-step-ahead evaluation).  
+Train set: 1 November – 15 December 2013 (6,480 steps, retrained on full tune-train + validation after hyperparameter selection on Dec 9–15).
 
-All three models outperform the seasonal naïve baseline by **78–80% in RMSE** on the test set.
+### Square 5161 — City centre (100th percentile)
+
+| Model | MAE | MAPE (%) | RMSE | Avg Train (s) |
+|-------|-----|----------|------|---------------|
+| Seasonal Naïve (baseline) | 338.6 | 25.94 | 619.0 | — |
+| **Holt-Winters** *(best)* | **81.88** | **8.40** | **121.65** | 1.41 |
+| LSTM | 84.19 | 8.72 | 127.89 | 10.52 |
+| Transformer | 100.53 | 14.88 | 133.96 | 61.13 |
+
+### Square 4159 — Mixed residential (95.8th percentile)
+
+| Model | MAE | MAPE (%) | RMSE | Avg Train (s) |
+|-------|-----|----------|------|---------------|
+| Seasonal Naïve (baseline) | 51.2 | 21.80 | 84.6 | — |
+| Holt-Winters | 16.91 | 7.39 | 23.14 | 1.41 |
+| **LSTM** *(best)* | **15.09** | **6.70** | **20.37** | 10.52 |
+| Transformer | 17.95 | 8.87 | 22.42 | 61.13 |
+
+### Square 4556 — Sub-central commercial (98.9th percentile)
+
+| Model | MAE | MAPE (%) | RMSE | Avg Train (s) |
+|-------|-----|----------|------|---------------|
+| Seasonal Naïve (baseline) | 76.3 | 17.46 | 108.4 | — |
+| Holt-Winters | 27.74 | 6.42 | 37.12 | 1.41 |
+| LSTM | 28.89 | 6.67 | 38.38 | 10.52 |
+| **Transformer** *(best)* | **26.72** | **6.17** | **36.03** | 61.13 |
+
+### Aggregate (average across all three areas)
+
+| Model | Avg RMSE | Avg MAPE (%) | Rank by RMSE |
+|-------|----------|--------------|--------------|
+| **Holt-Winters** | **60.64** | 7.40 | 1st |
+| LSTM | 62.21 | **7.36** | 2nd |
+| Transformer | 64.14 | 9.97 | 3rd |
+
+All three trained models outperform the seasonal naïve baseline by **65–80% in RMSE** across areas (64.6% minimum on Area 4556, 80.3% maximum on Square 5161). Diebold-Mariano significance tests confirm performance rankings are statistically significant (p < 0.001) on Areas 4159 and 4556.
+
+> **Evaluation protocol:** Rolling one-step-ahead — at each test step the model receives true historical values and predicts one step forward. This is the standard operational protocol for one-step forecasting. Auto-regressive rollout (feeding predictions back as input) inflates RMSE by 3.4–13.5× and is reported separately as a diagnostic comparison.
 
 ---
 
