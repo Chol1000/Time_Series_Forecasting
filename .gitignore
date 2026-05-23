@@ -47,10 +47,6 @@ data/raw/
 *.swp
 *.swo
 
-# Report files — submitted separately, not tracked in git
-outputs/report_milan_traffic.pdf
-outputs/report_full_text.txt
-
 # Misc
 *.log
 *.tmp
